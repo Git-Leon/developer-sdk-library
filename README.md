@@ -11,6 +11,8 @@
     * Python
     * Node.js
     * Notepad++
+    * Awesomium
+    * Markdown Pad
     * Visual Studio Code
     * IntelliJ Community Edition
     * PyCharm Community Edition
