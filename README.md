@@ -3,3 +3,36 @@
 
 ## Demonstration
 <img src="./developer-installer.gif">
+
+
+
+### Windows SDK Installer
+* This project contains a `.bat` file which will install the following windows dependencies:
+    * Python
+    * Node.js
+    * Notepad++
+    * Visual Studio Code
+    * IntelliJ Community Edition
+    * PyCharm Community Edition
+    
+#### Automated installer
+* Download this project as a `.zip`
+* Execute the respective installer for your environment
+
+
+<hr><hr>
+
+### MacOS SDK Installer
+
+* This project contains a `.sh` file which will install the following windows dependencies:
+    * HomeBrew
+    * Git Cli
+    * Python
+    * Node.js
+    * Visual Studio Code
+    * IntelliJ Community Edition
+    * PyCharm Community Edition
+    
+#### Automated installer
+* Download this project as a `.zip`
+* Execute the respective installer for your environment
