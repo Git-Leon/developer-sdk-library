@@ -2,7 +2,7 @@
 * **Objective**: The purpose of this repository to is to provide a homogenous development environment among a development team
 
 ## Demonstration
-<a href="./https://raw.githubusercontent.com/Git-Leon/developer-sdk-library/master/developer-installer.gif><img src="./developer-installer.gif"></a>
+<a href="https://raw.githubusercontent.com/Git-Leon/developer-sdk-library/master/developer-installer.gif"><img src="./developer-installer.gif"></a>
 
 
 
