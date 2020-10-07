@@ -1,8 +1,11 @@
 @ECHO OFF
+SET curlPath=%cd%/resources/curl/bin/curl.exe
+ECHO "Deserializing '%cd%\\resources\\curl\\binn' directory..."
+XCOPY /Y "%cd%\\resources\\curl\\binn\\" "%cd%\\resources\\curl\\bin\\"
 GOTO:MAIN
 
-
-
+:: ##########################################################################################
+:: ##########################################################################################
 :: ##########################################################################################
 :: -----------------------------------------------------------------------------------------
 :: prompt user to install 'some application'
@@ -11,21 +14,21 @@ GOTO:MAIN
     SETLOCAL ENABLEDELAYEDEXPANSION
         SET applicationName=%~1
         SET executableUrl=%~2
-        SET curlExecutionStatement="curl -o %cd%\%applicationName% %executableUrl%"
+        SET curlExecutionStatement="%curlPath% -o %cd%\%applicationName% %executableUrl%"
         
         call:installApplication %applicationName% %curlExecutionStatement%
     ENDLOCAL
 EXIT /B 0
 :: -----------------------------------------------------------------------------------------
 :: ##########################################################################################
+:: ##########################################################################################
+:: ##########################################################################################
 
 
 
 
-
-
-
-
+:: ##########################################################################################
+:: ##########################################################################################
 :: ##########################################################################################
 :: -----------------------------------------------------------------------------------------
 :: prompt user to install 'some application'
@@ -49,20 +52,21 @@ EXIT /B 0
 EXIT /B 0
 :: -----------------------------------------------------------------------------------------
 :: ##########################################################################################
+:: ##########################################################################################
+:: ##########################################################################################
 
 
 
 
 :MAIN
-call:defaultInstallApplication "installer_python-v3.7.3.exe"       "https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe"
-call:defaultInstallApplication "installer_node-v10.16.0-x64.msi"   "https://nodejs.org/dist/v10.16.0/node-v10.16.0-x64.msi"
-call:defaultInstallApplication "installer_npp-v7.7.1.exe"          "https://notepad-plus-plus.org/repository/7.x/7.7.1/npp.7.7.1.Installer.exe"
-call:defaultInstallApplication "installer_awesomium-v1.6.6.exe"    "http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe"
-call:defaultInstallApplication "installer_markdownpad2.exe"        "http://markdownpad.com/download/markdownpad2-setup.exe"
-call:defaultInstallApplication "installer_vscode.exe"              "https://az764295.vo.msecnd.net/stable/2213894ea0415ee8c85c5eea0d0ff81ecc191529/VSCodeUserSetup-ia32-1.36.1.exe"
-
+call:defaultInstallApplication "installer_python-v3.7.3.exe" "https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe"
+call:defaultInstallApplication "installer_node-v10.16.0-x64.msi" "https://nodejs.org/dist/v10.16.0/node-v10.16.0-x64.msi"
+call:defaultInstallApplication "installer_npp-v7.7.1.exe" "https://notepad-plus-plus.org/repository/7.x/7.7.1/npp.7.7.1.Installer.exe"
+call:defaultInstallApplication "installer_awesomium-v1.6.6.exe" "http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe"
+call:defaultInstallApplication "installer_markdownpad2.exe" "http://markdownpad.com/download/markdownpad2-setup.exe"
+call:defaultInstallApplication "installer_vscode.exe" "https://az764295.vo.msecnd.net/stable/2213894ea0415ee8c85c5eea0d0ff81ecc191529/VSCodeUserSetup-ia32-1.36.1.exe"
 call:installApplication "installer_intellij-v2020.2.1.exe"^
-    "curl -o ^"%cd%\installer_intellij-v2020.2.1.exe^" ^"https://download-cf.jetbrains.com/idea/ideaIU-2020.2.1.exe^"^
+    "%curlPath% -o ^"%cd%\installer_intellij-v2020.2.1.exe^" ^"https://download-cf.jetbrains.com/idea/ideaIU-2020.2.1.exe^"^
         -H ^"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0^"^
         -H ^"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8^"^
         -H ^"Accept-Language: en-US,en;q=0.5^"^
@@ -101,7 +105,7 @@ REM         -H ^"Cookie: _octo=GH1.1.301249152.1587513929; logged_in=yes; _ga=GA
 
 
 call:installApplication "installer_pycharm-v2020.2.2.exe"^
-    "curl -o ^"%cd%\installer_pycharm-v2020.2.2.exe^" ^"https://download-cf.jetbrains.com/python/pycharm-community-2020.2.2.exe^"^
+    "%curlPath% -o ^"%cd%\installer_pycharm-v2020.2.2.exe^" ^"https://download-cf.jetbrains.com/python/pycharm-community-2020.2.2.exe^"^
         -H ^"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0^"^
         -H ^"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8^"^
         -H ^"Accept-Language: en-US,en;q=0.5^"^
