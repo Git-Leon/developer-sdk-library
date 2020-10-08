@@ -13,6 +13,7 @@
     * Notepad++
     * Awesomium
     * Markdown Pad
+    * Postman
     * Eclipse
     * Visual Studio Code
     * IntelliJ Community Edition
