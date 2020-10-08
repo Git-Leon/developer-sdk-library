@@ -8,7 +8,7 @@
 
 ### Windows SDK Installer
 * This project contains a `.bat` file which will install the following windows dependencies:
-    * Python
+    1. Python
     * Node.js
     * Notepad++
     * Awesomium
@@ -29,7 +29,7 @@
 ### MacOS SDK Installer
 
 * This project contains a `.sh` file which will install the following windows dependencies:
-    * HomeBrew
+    1. HomeBrew
     * Python
     * Node.js
     * Git Cli
