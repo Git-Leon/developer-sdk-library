@@ -14,7 +14,7 @@
     4. Awesomium
     5. Markdown Pad
     6. Postman
-    7. Eclipse
+    7. Eclipse Java EE
     8. Visual Studio Code
     9. IntelliJ Community Edition
     10. PyCharm Community Edition
@@ -31,17 +31,18 @@
 * This project contains a `.sh` file which will install the following windows dependencies:
     1. HomeBrew
     2. Python
-    3. Node.js
-    4. Git Cli
-    5. MacDown
-    6. PostMan
-    7. Visual Studio Code
-    8. IntelliJ Community Edition
-    9. PyCharm Community Edition
-    10. Eclipse Java EE
-    11. Maven
-    12. Docker
-    13. Kubernetes-CLI
+    3. Java8 SE
+    4. Node.js
+    5. Git Cli
+    6. MacDown
+    7. PostMan
+    8. Visual Studio Code
+    9. IntelliJ Community Edition
+    10. PyCharm Community Edition
+    11. Eclipse Java EE
+    12. Maven
+    13. Docker
+    14. Kubernetes-CLI
     
     
     
