@@ -9,15 +9,15 @@
 ### Windows SDK Installer
 * This project contains a `.bat` file which will install the following windows dependencies:
     1. Python
-    * Node.js
-    * Notepad++
-    * Awesomium
-    * Markdown Pad
-    * Postman
-    * Eclipse
-    * Visual Studio Code
-    * IntelliJ Community Edition
-    * PyCharm Community Edition
+    2. Node.js
+    3. Notepad++
+    4. Awesomium
+    5. Markdown Pad
+    6. Postman
+    7. Eclipse
+    8. Visual Studio Code
+    9. IntelliJ Community Edition
+    10. PyCharm Community Edition
     
 #### Automated installer
 * Download this project as a `.zip`
@@ -30,18 +30,18 @@
 
 * This project contains a `.sh` file which will install the following windows dependencies:
     1. HomeBrew
-    * Python
-    * Node.js
-    * Git Cli
-    * MacDown
-    * PostMan
-    * Visual Studio Code
-    * IntelliJ Community Edition
-    * PyCharm Community Edition
-    * Eclipse Java EE
-    * Maven
-    * Docker
-    * Kubernetes-CLI
+    2. Python
+    3. Node.js
+    4. Git Cli
+    5. MacDown
+    6. PostMan
+    7. Visual Studio Code
+    8. IntelliJ Community Edition
+    9. PyCharm Community Edition
+    10. Eclipse Java EE
+    11. Maven
+    12. Docker
+    13. Kubernetes-CLI
     
     
     
