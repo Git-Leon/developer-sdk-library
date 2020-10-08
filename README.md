@@ -29,12 +29,20 @@
 
 * This project contains a `.sh` file which will install the following windows dependencies:
     * HomeBrew
-    * Git Cli
     * Python
     * Node.js
+    * Git Cli
+    * MacDown
+    * PostMan
     * Visual Studio Code
     * IntelliJ Community Edition
     * PyCharm Community Edition
+    * Eclipse Java EE
+    * Maven
+    * Docker
+    * Kubernetes-CLI
+    
+    
     
 #### Automated installer
 * Download this project as a `.zip`
