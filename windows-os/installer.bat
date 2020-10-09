@@ -57,9 +57,7 @@ EXIT /B 0
 
 
 
-windows-os\installer_chocolatey
 :MAIN
-call:installApplication "chocolatey" "START installer_chocolatey/installer.bat"
 call:defaultInstallApplication "installer_python-v3.7.3.exe"        "https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe"
 call:defaultInstallApplication "installer_node-v10.16.0-x64.msi"    "https://nodejs.org/dist/v10.16.0/node-v10.16.0-x64.msi"
 call:defaultInstallApplication "installer_npp-v7.7.1.exe"           "https://notepad-plus-plus.org/repository/7.x/7.7.1/npp.7.7.1.Installer.exe"
