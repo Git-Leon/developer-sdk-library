@@ -140,17 +140,17 @@ EXIT /B 0
 
 
 :MAIN
-call:installChocolatey
+REM call:installChocolatey
 call:defaultInstallApplication "installer_python-v3.7.3.exe"        "https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe"
 call:defaultInstallApplication "installer_node-v10.16.0-x64.msi"    "https://nodejs.org/dist/v10.16.0/node-v10.16.0-x64.msi"
 call:defaultInstallApplication "installer_npp-v7.7.1.exe"           "https://notepad-plus-plus.org/repository/7.x/7.7.1/npp.7.7.1.Installer.exe"
 call:defaultInstallApplication "installer_awesomium-v1.6.6.exe"     "http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe"
 call:defaultInstallApplication "installer_markdownpad2.exe"         "http://markdownpad.com/download/markdownpad2-setup.exe"
 call:defaultInstallApplication "installer_postman.exe"              "https://dl.pstmn.io/download/latest/win64"
-call:chocoInstall "kubernetes-cli"
-call:chocoInstall "docker-cli"
-call:chocoInstall "jdk8"
-call:chocoInstall "maven"
+REM call:chocoInstall "kubernetes-cli"
+REM call:chocoInstall "docker-cli"
+REM call:chocoInstall "jdk8"
+REM call:chocoInstall "maven"
 call:defaultInstallApplication "installer_eclipse.exe"              "http://mirror.umd.edu/eclipse/oomph/epp/2020-09/R/eclipse-inst-jre-win64.exe"
 call:defaultInstallApplication "installer_vscode.exe"               "https://az764295.vo.msecnd.net/stable/2213894ea0415ee8c85c5eea0d0ff81ecc191529/VSCodeUserSetup-ia32-1.36.1.exe"
 call:installApplication "installer_intellij-v2020.2.1.exe"^
