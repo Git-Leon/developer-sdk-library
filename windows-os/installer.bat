@@ -65,33 +65,31 @@ EXIT /B 0
 :installChocolatey
     @ECHO OFF
     SETLOCAL ENABLEDELAYEDEXPANSION
+        SET applicationName="Chocolatey"
         ECHO "Would you like to download and install '%applicationName%'?"
         :PROMPT
             SET /P areYouSure="Are you sure (Y/[N])?"
             IF /I "%areYouSure%" NEQ "y" GOTO END
                 ECHO "downloading %applicationName% installer..."
-                %curlExecutionStatement%
+                :: Check for permissions
+                > nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
-                ECHO "Installing %applicationName%"
-            :: Check for permissions
-            > nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+                :: If error flag set, we do not have admin.
+                IF '%ERRORLEVEL%' NEQ '0' (
+                    ECHO Requesting administrative privileges... ^(waiting 2 seconds^)
+                    PING -n 3 127.0.0.1>nul
+                    ECHO Set UAC = CreateObject^("Shell.Application"^) > "%Temp%\getadmin.vbs"
+                    ECHO UAC.ShellExecute "%~s0", "", "", "RUNAS", 1 >> "%Temp%\getadmin.vbs"
 
-            :: If error flag set, we do not have admin.
-            IF '%ERRORLEVEL%' NEQ '0' (
-                ECHO Requesting administrative privileges... ^(waiting 2 seconds^)
-                PING -n 3 127.0.0.1>nul
-                ECHO Set UAC = CreateObject^("Shell.Application"^) > "%Temp%\getadmin.vbs"
-                ECHO UAC.ShellExecute "%~s0", "", "", "RUNAS", 1 >> "%Temp%\getadmin.vbs"
-
-                "%Temp%\getadmin.vbs"
-                EXIT /B
-            ) ELSE (
-                IF EXIST "%Temp%\getadmin.vbs" ( DEL "%Temp%\getadmin.vbs" )
-                    PUSHD "%CD%"
-                    CD /D "%~dp0"
-                    ECHO BatchGotAdmin Permissions set.
-            )
-        @powershell -NoProfile -ExecutionPolicy Unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%SYSTEMDRIVE%\chocolatey\bin;%ALLUSERSPROFILE%\chocolatey\bin
+                    "%Temp%\getadmin.vbs"
+                    EXIT /B
+                ) ELSE (
+                    IF EXIST "%Temp%\getadmin.vbs" ( DEL "%Temp%\getadmin.vbs" )
+                        PUSHD "%CD%"
+                        CD /D "%~dp0"
+                        ECHO BatchGotAdmin Permissions set.
+                )
+                @powershell -NoProfile -ExecutionPolicy Unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%SYSTEMDRIVE%\chocolatey\bin;%ALLUSERSPROFILE%\chocolatey\bin
         :END
     ENDLOCAL
     ECHO End %~nx0
