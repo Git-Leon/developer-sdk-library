@@ -57,7 +57,54 @@ EXIT /B 0
 
 
 
+
+:: ##########################################################################################
+:: ##########################################################################################
+:: ##########################################################################################
+:: -----------------------------------------------------------------------------------------
+:installChocolatey
+    @ECHO OFF
+    SETLOCAL ENABLEDELAYEDEXPANSION
+        ECHO "Would you like to download and install '%applicationName%'?"
+        :PROMPT
+            SET /P areYouSure="Are you sure (Y/[N])?"
+            IF /I "%areYouSure%" NEQ "y" GOTO END
+                ECHO "downloading %applicationName% installer..."
+                %curlExecutionStatement%
+
+                ECHO "Installing %applicationName%"
+            :: Check for permissions
+            > nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+            :: If error flag set, we do not have admin.
+            IF '%ERRORLEVEL%' NEQ '0' (
+                ECHO Requesting administrative privileges... ^(waiting 2 seconds^)
+                PING -n 3 127.0.0.1>nul
+                ECHO Set UAC = CreateObject^("Shell.Application"^) > "%Temp%\getadmin.vbs"
+                ECHO UAC.ShellExecute "%~s0", "", "", "RUNAS", 1 >> "%Temp%\getadmin.vbs"
+
+                "%Temp%\getadmin.vbs"
+                EXIT /B
+            ) ELSE (
+                IF EXIST "%Temp%\getadmin.vbs" ( DEL "%Temp%\getadmin.vbs" )
+                    PUSHD "%CD%"
+                    CD /D "%~dp0"
+                    ECHO BatchGotAdmin Permissions set.
+            )
+        @powershell -NoProfile -ExecutionPolicy Unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%SYSTEMDRIVE%\chocolatey\bin;%ALLUSERSPROFILE%\chocolatey\bin
+        :END
+    ENDLOCAL
+    ECHO End %~nx0
+EXIT /B 0
+:: -----------------------------------------------------------------------------------------
+:: ##########################################################################################
+:: ##########################################################################################
+:: ##########################################################################################
+
+
+
 :MAIN
+call:installChocolatey
 call:defaultInstallApplication "installer_python-v3.7.3.exe"        "https://www.python.org/ftp/python/3.7.3/python-3.7.3-amd64.exe"
 call:defaultInstallApplication "installer_node-v10.16.0-x64.msi"    "https://nodejs.org/dist/v10.16.0/node-v10.16.0-x64.msi"
 call:defaultInstallApplication "installer_npp-v7.7.1.exe"           "https://notepad-plus-plus.org/repository/7.x/7.7.1/npp.7.7.1.Installer.exe"
