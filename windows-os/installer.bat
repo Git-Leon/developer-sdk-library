@@ -58,6 +58,43 @@ EXIT /B 0
 
 
 
+
+
+
+
+
+:: ##########################################################################################
+:: ##########################################################################################
+:: ##########################################################################################
+:: -----------------------------------------------------------------------------------------
+:chocoInstall
+    @ECHO OFF
+    SETLOCAL ENABLEDELAYEDEXPANSION
+        SET chocoPackage=%~1
+        ECHO "Would you like to download and install '%chocoPackage%'?"
+        :PROMPT
+            SET /P areYouSure="Are you sure (Y/[N])?"
+            IF /I "%areYouSure%" NEQ "y" GOTO END
+                ECHO "downloading %chocoPackage% installer..."
+                choco install %chocoPackage%
+        :END
+    ENDLOCAL
+EXIT /B 0
+:: -----------------------------------------------------------------------------------------
+:: ##########################################################################################
+:: ##########################################################################################
+:: ##########################################################################################
+
+
+
+
+
+
+
+
+
+
+
 :: ##########################################################################################
 :: ##########################################################################################
 :: ##########################################################################################
@@ -90,6 +127,7 @@ EXIT /B 0
                         ECHO BatchGotAdmin Permissions set.
                 )
                 @powershell -NoProfile -ExecutionPolicy Unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%SYSTEMDRIVE%\chocolatey\bin;%ALLUSERSPROFILE%\chocolatey\bin
+                @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
         :END
     ENDLOCAL
     ECHO End %~nx0
@@ -109,6 +147,10 @@ call:defaultInstallApplication "installer_npp-v7.7.1.exe"           "https://not
 call:defaultInstallApplication "installer_awesomium-v1.6.6.exe"     "http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe"
 call:defaultInstallApplication "installer_markdownpad2.exe"         "http://markdownpad.com/download/markdownpad2-setup.exe"
 call:defaultInstallApplication "installer_postman.exe"              "https://dl.pstmn.io/download/latest/win64"
+call:chocoInstall "kubernetes-cli"
+call:chocoInstall "docker-cli"
+call:chocoInstall "jdk8"
+call:chocoInstall "maven"
 call:defaultInstallApplication "installer_eclipse.exe"              "http://mirror.umd.edu/eclipse/oomph/epp/2020-09/R/eclipse-inst-jre-win64.exe"
 call:defaultInstallApplication "installer_vscode.exe"               "https://az764295.vo.msecnd.net/stable/2213894ea0415ee8c85c5eea0d0ff81ecc191529/VSCodeUserSetup-ia32-1.36.1.exe"
 call:installApplication "installer_intellij-v2020.2.1.exe"^
@@ -120,7 +162,6 @@ call:installApplication "installer_intellij-v2020.2.1.exe"^
         -H ^"Connection: keep-alive^"^
         -H ^"Cookie: _gcl_au=1.1.1556281742.1599423447; _ga=GA1.1.1454185254.1599423448; _gid=GA1.2.2076224765.1599423448; _ga_TNKGS6FGXX=GS1.1.1599423447.1.1.1599423467.0^"^
         -H ^"Upgrade-Insecure-Requests: 1^""
-
 
 :: ##########################################################################################
 :: -----------------------------------------------------------------------------------------
@@ -159,3 +200,5 @@ call:installApplication "installer_pycharm-v2020.2.2.exe"^
         -H ^"Connection: keep-alive^"^
         -H ^"Cookie: _ga=GA1.1.594083364.1573664930; _hjid=71889476-ad4a-4ac6-adbf-5b18f197ce6e; _ga_TNKGS6FGXX=GS1.1.1601590894.6.1.1601590896.58; _gcl_au=1.1.996650656.1596036073; _ga_1QPM2PL8QR=GS1.1.1601580227.1.0.1601580227.0; _gid=GA1.2.1807665973.1601580228; _gat_UA-47631155-3=1; _mkto_trk=id:426-QVD-114&token:_mch-jetbrains.com-1601590894765-43628; _fbp=fb.1.1601590894939.762435895; _uetsid=d006bdc0041b11eba84347b1f8af49b0; _uetvid=d006c2a0041b11eb963d6d7533874fca^"^
         -H ^"Upgrade-Insecure-Requests: 1^""
+
+
