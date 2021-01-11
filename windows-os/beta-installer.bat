@@ -38,10 +38,17 @@ EXIT /B 0
     SETLOCAL ENABLEDELAYEDEXPANSION
         SET applicationName=%~1
         SET curlExecutionStatement=%~2
+
         ECHO "Would you like to download and install '%applicationName%'?"
-        call:download %applicationName% %curlExecutionStatement%
-        ECHO "Installing %applicationName%"
-        START %applicationName%
+        :PROMPT
+            SET /P areYouSure="Are you sure (Y/[N])?"
+            IF /I "%areYouSure%" NEQ "y" GOTO END
+                ECHO "downloading %applicationName% installer..."
+                %curlExecutionStatement%
+
+                ECHO "Installing %applicationName%"
+                START %applicationName%
+        :END
     ENDLOCAL
 EXIT /B 0
 :: -----------------------------------------------------------------------------------------
@@ -67,6 +74,7 @@ EXIT /B 0
             SET /P areYouSure="Are you sure (Y/[N])?"
             IF /I "%areYouSure%" NEQ "y" GOTO END
                 ECHO "downloading %applicationName% installer..."
+                ECHO %curlExecutionStatement%
                 %curlExecutionStatement%
                 ECHO "downloaded %applicationName% installer."
         :END
