@@ -76,8 +76,11 @@ EXIT /B 0
         :PROMPT
             SET /P areYouSure="Are you sure (Y/[N])?"
             IF /I "%areYouSure%" NEQ "y" GOTO END
-                ECHO "downloading %chocoPackage% installer..."
-                choco install %chocoPackage%
+                ECHO " "
+                ECHO "##########################################################################################"
+                ECHO "Beginning installation of %chocoPackage%"
+                choco install %chocoPackage% -dvfy
+                ECHO "Completed installation of %chocoPackage%"
         :END
     ENDLOCAL
 EXIT /B 0
@@ -160,16 +163,34 @@ call:installApplication "installer_intellij-v2020.2.1.exe"^
         -H ^"Cookie: _gcl_au=1.1.1556281742.1599423447; _ga=GA1.1.1454185254.1599423448; _gid=GA1.2.2076224765.1599423448; _ga_TNKGS6FGXX=GS1.1.1599423447.1.1.1599423467.0^"^
         -H ^"Upgrade-Insecure-Requests: 1^""
 
+call:installApplication "installer_pycharm-v2020.2.2.exe"^
+    "%curlPath% -o ^"%cd%\installer_pycharm-v2020.2.2.exe^" ^"https://download-cf.jetbrains.com/python/pycharm-community-2020.2.2.exe^"^
+        -H ^"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0^"^
+        -H ^"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8^"^
+        -H ^"Accept-Language: en-US,en;q=0.5^"^
+        -H ^"Referer: https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC^"^
+        -H ^"Connection: keep-alive^"^
+        -H ^"Cookie: _ga=GA1.1.594083364.1573664930; _hjid=71889476-ad4a-4ac6-adbf-5b18f197ce6e; _ga_TNKGS6FGXX=GS1.1.1601590894.6.1.1601590896.58; _gcl_au=1.1.996650656.1596036073; _ga_1QPM2PL8QR=GS1.1.1601580227.1.0.1601580227.0; _gid=GA1.2.1807665973.1601580228; _gat_UA-47631155-3=1; _mkto_trk=id:426-QVD-114&token:_mch-jetbrains.com-1601590894765-43628; _fbp=fb.1.1601590894939.762435895; _uetsid=d006bdc0041b11eba84347b1f8af49b0; _uetvid=d006c2a0041b11eb963d6d7533874fca^"^
+        -H ^"Upgrade-Insecure-Requests: 1^""
 
 :: ##########################################################################################
 :: -----------------------------------------------------------------------------------------
 :: Partially stable chocolatey installs; inconsistent results; opens several terminals
 REM call:installChocolatey
+REM call:chocoInstall "notepadplusplus"
+REM call:chocoInstall "markdownpad.portable"
 REM call:chocoInstall "git.install"
-REM call:chocoInstall "kubernetes-cli"
-REM call:chocoInstall "docker-cli"
+REM call:chocoInstall "node"
+REM call:chocoInstall "vscode"
+REM call:chocoInstall "python --version=3.8.0"
+REM call:chocoInstall "pycharm-community"
 REM call:chocoInstall "jdk8"
 REM call:chocoInstall "maven"
+REM call:chocoInstall "intellijidea-community"
+REM call:chocoInstall "eclipse"
+REM call:chocoInstall "postman"
+REM call:chocoInstall "firefox"
+
 :: -----------------------------------------------------------------------------------------
 :: Unstable download mechanism below; TODO - Resolve request issues
 REM call:defaultInstallApplication "installer_docker.exe" "https://download.docker.com/win/stable/Docker%%20Desktop%%20Installer.exe"
@@ -197,14 +218,5 @@ REM         -H ^"Cookie: _octo=GH1.1.301249152.1587513929; logged_in=yes; _ga=GA
 
 
 
-call:installApplication "installer_pycharm-v2020.2.2.exe"^
-    "%curlPath% -o ^"%cd%\installer_pycharm-v2020.2.2.exe^" ^"https://download-cf.jetbrains.com/python/pycharm-community-2020.2.2.exe^"^
-        -H ^"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0^"^
-        -H ^"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8^"^
-        -H ^"Accept-Language: en-US,en;q=0.5^"^
-        -H ^"Referer: https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC^"^
-        -H ^"Connection: keep-alive^"^
-        -H ^"Cookie: _ga=GA1.1.594083364.1573664930; _hjid=71889476-ad4a-4ac6-adbf-5b18f197ce6e; _ga_TNKGS6FGXX=GS1.1.1601590894.6.1.1601590896.58; _gcl_au=1.1.996650656.1596036073; _ga_1QPM2PL8QR=GS1.1.1601580227.1.0.1601580227.0; _gid=GA1.2.1807665973.1601580228; _gat_UA-47631155-3=1; _mkto_trk=id:426-QVD-114&token:_mch-jetbrains.com-1601590894765-43628; _fbp=fb.1.1601590894939.762435895; _uetsid=d006bdc0041b11eba84347b1f8af49b0; _uetvid=d006c2a0041b11eb963d6d7533874fca^"^
-        -H ^"Upgrade-Insecure-Requests: 1^""
 
 
