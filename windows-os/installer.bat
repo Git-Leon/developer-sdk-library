@@ -180,7 +180,7 @@ REM call:installChocolatey
 REM call:chocoInstall "notepadplusplus"
 REM call:chocoInstall "markdownpad.portable"
 REM call:chocoInstall "git.install"
-REM call:chocoInstall "node"
+REM call:chocoInstall "nodejs"
 REM call:chocoInstall "vscode"
 REM call:chocoInstall "python --version=3.8.0"
 REM call:chocoInstall "pycharm-community"
